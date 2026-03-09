@@ -1,6 +1,6 @@
 # Kigali City Services
 
-A Flutter mobile application that provides a directory of services and places of interest across Kigali, Rwanda. Users can sign up, browse listings, add their own places, search and filter by category, view locations on an embedded Google Map, and get turn-by-turn directions — all backed by Firebase Authentication and Firestore in real time.
+A Flutter mobile application that provides a directory of services and places of interest across Kigali, Rwanda. Users can sign up, browse listings, add their own places, search and filter by category, view locations on an embedded Google Map, and get turn-by-turn directions, all backed by Firebase Authentication and Firestore in real time.
 
 ---
 
