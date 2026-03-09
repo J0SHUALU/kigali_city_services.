@@ -61,7 +61,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () async => await context.read<ap.AuthProvider>().reloadUser(),
+                  onPressed: () async {
+                    final navigator = Navigator.of(context);
+                    await context.read<ap.AuthProvider>().reloadUser();
+                    navigator.popUntil((route) => route.isFirst);
+                  },
                   child: const Text('I verified — continue'),
                 ),
                 TextButton(
