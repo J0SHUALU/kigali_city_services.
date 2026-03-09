@@ -17,9 +17,12 @@ class FirestoreService {
     return _db
         .collection('services')
         .where('createdBy', isEqualTo: userId)
-        .orderBy('timestamp', descending: true)
         .snapshots()
-        .map((snap) => snap.docs.map(ServiceModel.fromFirestore).toList());
+        .map((snap) {
+          final list = snap.docs.map(ServiceModel.fromFirestore).toList();
+          list.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+          return list;
+        });
   }
 
   Future<void> createService(ServiceModel service) async {

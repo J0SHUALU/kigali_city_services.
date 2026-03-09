@@ -31,7 +31,15 @@ class CategoryScreen extends StatelessWidget {
       body: loadingState == LoadingState.loading
           ? const Center(
               child: CircularProgressIndicator(color: AppColors.primary))
-          : listings.isEmpty
+          : loadingState == LoadingState.error
+              ? const Center(
+                  child: Text(
+                    'Failed to load listings. Check your connection.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: AppColors.error),
+                  ),
+                )
+              : listings.isEmpty
               ? const Center(
                   child: Text(
                     'You have not added any listings yet.\nTap + to add one.',
