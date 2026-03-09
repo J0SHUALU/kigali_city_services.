@@ -38,9 +38,12 @@ class FirestoreService {
     return _db
         .collection('reviews')
         .where('serviceId', isEqualTo: serviceId)
-        .orderBy('timestamp', descending: true)
         .snapshots()
-        .map((snap) => snap.docs.map(ReviewModel.fromFirestore).toList());
+        .map((snap) {
+          final reviews = snap.docs.map(ReviewModel.fromFirestore).toList();
+          reviews.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+          return reviews;
+        });
   }
 
   Future<void> addReview(ReviewModel review) async {

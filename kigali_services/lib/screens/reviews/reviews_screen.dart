@@ -91,6 +91,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
       body: StreamBuilder<List<ReviewModel>>(
         stream: provider.getReviewsStream(widget.service.id),
         builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error loading reviews: ${snapshot.error}', style: const TextStyle(color: AppColors.error)));
+          }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator(color: AppColors.primary));
           }
